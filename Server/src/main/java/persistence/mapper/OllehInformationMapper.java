@@ -15,7 +15,7 @@ public interface OllehInformationMapper {
             @Result(property = "spotkey", column = "spot_key"),
             @Result(property = "ollehname", column = "olleh_name"),
             @Result(property = "ollehlength", column = "olleh_length"),
-            @Result(property = "ollehspendtime", column = "ollehspendtime")
+            @Result(property = "ollehspendtime", column = "olleh_spend_time")
     })
     List<OllehInformationDTO> get_all_olleh_information_details(@Param("address")String address);
 
@@ -24,7 +24,7 @@ public interface OllehInformationMapper {
             @Result(property = "spotkey", column = "spot_key"),
             @Result(property = "spotname", column = "spot_name"),
             @Result(property = "spotaddress", column = "spot_address"),
-            @Result(property = "spottype", column = "spottype")
+            @Result(property = "spottype", column = "spot_type")
     })
     List<SpotInformationDTO> get_all_spot_information();
 

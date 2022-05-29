@@ -22,7 +22,7 @@ public interface NatureSightMapper {
             @Result(property = "spotkey", column = "spot_key"),
             @Result(property = "spotname", column = "spot_name"),
             @Result(property = "spotaddress", column = "spot_address"),
-            @Result(property = "spottype", column = "spottype")
+            @Result(property = "spottype", column = "spot_type")
     })
     List<SpotInformationDTO> get_all_spot_information();
 
