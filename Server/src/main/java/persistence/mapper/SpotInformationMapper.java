@@ -25,8 +25,12 @@ public interface SpotInformationMapper {
     @ResultMap("spotInformationSet")
     List<SpotInformationDTO> get_spot_information_by_address(@Param("address")String address);
 
-    @Select("SELECT * FROM SPOT_INFORMATION WHERE SPOT_ADDRESS LIKE CONCAT('%', #{address}, '%') ORDER BY RAND() LIMIT #{need_amount}" )
+//    @Select("SELECT * FROM SPOT_INFORMATION WHERE SPOT_ADDRESS LIKE CONCAT('%', #{address}, '%') ORDER BY RAND() LIMIT #{need_amount}" )
+//    @ResultMap("spotInformationSet")
+//    List<SpotInformationDTO> get_spot_information_random_by_address(@Param("address")String address, @Param("need_amount")int needAmount);
+
+    @SelectProvider(type = SpotInformationSQL.class, method = "s_select_by_address_randomly")
     @ResultMap("spotInformationSet")
-    List<SpotInformationDTO> get_spot_information_random_by_address(@Param("address")String address, @Param("need_amount")int needAmount);
+    List<SpotInformationDTO> get_spot_information_random_by_address(String[] address, int needAmount);
 
 }

@@ -1,7 +1,11 @@
 package service;
 
 import persistence.DAO.*;
+import persistence.DTO.SpotInformationDTO;
 import persistence.MybatisConnectionFactory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Service {
     // 네트워크 관련 필드 (미정)
@@ -9,6 +13,7 @@ public class Service {
     // DAO 관련 클래스
     SearchTypeDAO searchTypeDAO = new SearchTypeDAO(MybatisConnectionFactory.getSqlSessionFactory());
     SearchAreaDAO searchAreaDAO = new SearchAreaDAO(MybatisConnectionFactory.getSqlSessionFactory());
+    SearchSuggestionDAO searchSuggestionDAO = new SearchSuggestionDAO(MybatisConnectionFactory.getSqlSessionFactory());
     // 데이터 베이스 관련 서비스
     public JProtocol.SendExhibitionPacket e_work_read_all(String address) {
         JProtocol.SendExhibitionPacket sendExhibitionPacket = new JProtocol.SendExhibitionPacket(
@@ -68,6 +73,23 @@ public class Service {
                 JProtocol.PT_SERVER_RES,
                 searchAreaDAO.s_select_by_area_with_annotation(address));
         return sendSpotInformationPacket;
+    }
+
+    public JProtocol.SendSpotInformationListPacket s_work_read_list_by_address_randomly(List<Integer> X, List<Integer> Y) {
+
+        List<List<SpotInformationDTO>> spotInformationDTOsList = new ArrayList<>();
+        for(int i = 0; i < 3; i++) {
+            String jeju_grid_local =
+                    searchSuggestionDAO.j_select_local_by_grid_with_annotation(X.get(i), Y.get(i))
+                            .get(0).getJejugridlocal();
+            String[] jeju_grid_local_split = jeju_grid_local.split("_");
+            spotInformationDTOsList.add(searchSuggestionDAO.s_select_by_area_randomly_with_annotation(jeju_grid_local_split, 20));
+        }
+        JProtocol.SendSpotInformationListPacket sendSpotInformationListPacket = new JProtocol.SendSpotInformationListPacket(
+                JProtocol.PT_RECOMMEND_SPOT,
+                JProtocol.PT_SERVER_RES,
+                spotInformationDTOsList);
+        return sendSpotInformationListPacket;
     }
 
 }

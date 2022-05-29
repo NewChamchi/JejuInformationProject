@@ -30,7 +30,6 @@ public class Main {
             PrintMenu();
             int menu_result = sc.nextInt();
             JProtocol.ClientSpotDataRequestPacket clientSpotDataRequestPacket = new JProtocol.ClientSpotDataRequestPacket();
-            JProtocol.ClientGridRequestPacket clientGridRequestPacket = new JProtocol.ClientGridRequestPacket();
             JProtocol.ClientRecommendedSpotRequestPacket clientRecommendedSpotRequestPacket = new JProtocol.ClientRecommendedSpotRequestPacket();
             switch (menu_result) {
                 case 1:

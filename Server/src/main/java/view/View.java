@@ -3,6 +3,8 @@ package view;
 import service.JProtocol;
 import service.Service;
 
+import java.util.List;
+
 public class View {
 
     Service service = new Service();
@@ -73,6 +75,15 @@ public class View {
         System.out.println("sendSpotInformationPacket = " + sendSpotInformationPacket);
         System.out.println("sendSpotInformationPacket.getProtocolData() = " + sendSpotInformationPacket.getProtocolData());
         return sendSpotInformationPacket;
+    }
+
+    public JProtocol.SendSpotInformationListPacket read_spot_information_list_by_address_randomly(List<Integer> X, List<Integer> Y) {
+        JProtocol.SendSpotInformationListPacket sendSpotInformationListPacket = service.s_work_read_list_by_address_randomly(X, Y);
+
+        System.out.println("sendSpotInformationListPacket = " + sendSpotInformationListPacket);
+        System.out.println("sendSpotInformationListPacket.getProtocolData() = " + sendSpotInformationListPacket.getProtocolData());
+
+        return sendSpotInformationListPacket;
     }
 
 

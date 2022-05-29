@@ -157,7 +157,11 @@ class client_handle extends Thread {
                     case JProtocol.PT_RECOMMEND_SPOT:
                         switch (Packet.getProtocolCode()) {
                             case JProtocol.PT_CLIENT_REQ:
-                                oos.writeObject("");
+                                JProtocol.SendSpotInformationListPacket sendSpotInformationListPacket = view.read_spot_information_list_by_address_randomly(
+                                        ((JProtocol.ClientRecommendedSpotRequestPacket) Packet).getProtocolX(),
+                                        ((JProtocol.ClientRecommendedSpotRequestPacket) Packet).getProtocolY()
+                                );
+                                oos.writeObject(sendSpotInformationListPacket);
                                 oos.flush();
                                 break;
                         }
