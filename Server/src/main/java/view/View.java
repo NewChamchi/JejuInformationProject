@@ -75,12 +75,5 @@ public class View {
         return sendSpotInformationPacket;
     }
 
-    public JProtocol.SendJejuGridListPacket read_jeju_grid_all() {
-        JProtocol.SendJejuGridListPacket sendJejuGridListPacket = service.jeju_grid_work_read_all();
-
-        System.out.println("sendJejuGridListPacket = " + sendJejuGridListPacket);
-        System.out.println("sendJejuGridListPacket.getProtocolGridData() = " + sendJejuGridListPacket.getProtocolGridData());
-        return sendJejuGridListPacket;
-    }
 
 }

@@ -154,16 +154,6 @@ class client_handle extends Thread {
                         }
                         break;
 
-                    case JProtocol.PT_JEJU_GRID:
-                        switch (Packet.getProtocolCode()) {
-                            case JProtocol.PT_CLIENT_REQ:
-                                JProtocol.SendJejuGridListPacket sendJejuGridListPacket = view.read_jeju_grid_all();
-                                oos.writeObject(sendJejuGridListPacket);
-                                oos.flush();
-                                break;
-                        }
-                        break;
-
                     case JProtocol.PT_RECOMMEND_SPOT:
                         switch (Packet.getProtocolCode()) {
                             case JProtocol.PT_CLIENT_REQ:

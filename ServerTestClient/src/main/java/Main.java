@@ -79,11 +79,6 @@ public class Main {
                     oos.flush();
                     break;
                 case 10:
-                    clientGridRequestPacket.setPacket(JProtocol.PT_JEJU_GRID, JProtocol.PT_CLIENT_REQ);
-                    oos.writeObject(clientGridRequestPacket);
-                    oos.flush();
-                    break;
-                case 11:
                     // 임의로 넣은 값임
                     ArrayList xdata = new ArrayList();
                     xdata.add(55);
@@ -93,11 +88,7 @@ public class Main {
                     ydata.add(32);
                     ydata.add(33);
                     ydata.add(37);
-                    ArrayList weightdata = new ArrayList();
-                    weightdata.add(50.3);
-                    weightdata.add(44.7);
-                    weightdata.add(37.2);
-                    clientRecommendedSpotRequestPacket.setPacket(JProtocol.PT_RECOMMEND_SPOT, JProtocol.PT_CLIENT_REQ, xdata, ydata, weightdata);
+                    clientRecommendedSpotRequestPacket.setPacket(JProtocol.PT_RECOMMEND_SPOT, JProtocol.PT_CLIENT_REQ, xdata, ydata);
                     oos.writeObject(clientRecommendedSpotRequestPacket);
                     oos.flush();
                     break;
@@ -176,24 +167,6 @@ public class Main {
                             break;
                     }
                     break;
-                case JProtocol.PT_JEJU_GRID:
-                    switch (serverMessagePacket.getProtocolCode()) {
-                        case JProtocol.PT_SERVER_RES:
-                            System.out.println("((JProtocol.SendJejuGridListPacket)serverMessagePacket).getProtocolGridData() = " +
-                                    ((JProtocol.SendJejuGridListPacket)serverMessagePacket).getProtocolGridData());
-                            // 제주도 x좌표, y좌표 값 얻는 법(예시일 뿐! 참고해서 바꿀 것)
-                            List<JejuGridDTO> jejuGridDTOS =((JProtocol.SendJejuGridListPacket)serverMessagePacket).getProtocolGridData();
-                            List<Integer> x = new ArrayList<>();
-                            for(JejuGridDTO obj : jejuGridDTOS) {
-                                x.add(obj.getJejugridx());
-                            }
-                            List<Integer> y = new ArrayList<>();
-                            for(JejuGridDTO obj : jejuGridDTOS) {
-                                y.add(obj.getJejugridy());
-                            }
-                            break;
-                    }
-                    break;
                 case JProtocol.PT_RECOMMEND_SPOT:
                     switch (serverMessagePacket.getProtocolCode()) {
                         case JProtocol.PT_SERVER_RES:
@@ -228,8 +201,7 @@ public class Main {
         System.out.println("7. 오름 조회");
         System.out.println("8. 무장애 여행지 조회");
         System.out.println("9. 제주도 지역별 관광지 조회");
-        System.out.println("10. 제주도 격자 요청");
-        System.out.println("11. 날씨에 따른 추천 관광지 요청");
+        System.out.println("10. 날씨에 따른 추천 관광지 요청");
         System.out.print("메뉴 선택 : ");
     }
 }

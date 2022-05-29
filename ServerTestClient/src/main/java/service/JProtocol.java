@@ -22,8 +22,7 @@ public class JProtocol {
     public static final int PT_OLLEH_INFORMATION = 5;
     public static final int PT_SPOT_INFORMATION = 6;
     public static final int PT_AREA_INFORMATION = 7;
-    public static final int PT_JEJU_GRID = 8;
-    public static final int PT_RECOMMEND_SPOT = 9;
+    public static final int PT_RECOMMEND_SPOT = 8;
     // CODE 정보
     public static final int PT_CLIENT_REQ = 1;
     public static final int PT_SERVER_RES = 2;
@@ -32,6 +31,7 @@ public class JProtocol {
     @Setter
     @ToString
     public static class Packet implements Serializable {
+        private static final long serialVersionUID = 8L;
         protected int protocolType;
         protected int protocolCode;
 
@@ -89,29 +89,24 @@ public class JProtocol {
         }
     }
 
-    public static class ClientGridRequestPacket extends Packet { }
-
     public static class ClientRecommendedSpotRequestPacket extends Packet {
         protected List<Integer> protocolX;
         protected List<Integer> protocolY;
-        protected List<Float> protocolWeight;
 
         public ClientRecommendedSpotRequestPacket() { super(); }
 
         public ClientRecommendedSpotRequestPacket(int protocolType, int protocolCode, List<Integer> protocolX,
-                                                  List<Integer> protocolY, List<Float> protocolWeight) {
+                                                  List<Integer> protocolY) {
             super(protocolType, protocolCode);
             this.protocolX = protocolX;
             this.protocolY = protocolY;
-            this.protocolWeight = protocolWeight;
         }
 
         public void setPacket(int protocolType, int protocolCode, List<Integer> protocolX,
-                              List<Integer> protocolY, List<Float> protocolWeight) {
+                              List<Integer> protocolY) {
             super.setPacket(protocolType, protocolCode);
             this.protocolX = protocolX;
             this.protocolY = protocolY;
-            this.protocolWeight = protocolWeight;
         }
 
 
@@ -121,10 +116,6 @@ public class JProtocol {
 
         public List<Integer> getProtocolY() {
             return protocolY;
-        }
-
-        public List<Float> getProtocolWeight() {
-            return protocolWeight;
         }
     }
 
@@ -285,21 +276,4 @@ public class JProtocol {
         }
     }
 
-    public static class SendJejuGridListPacket extends Packet {
-        protected List<JejuGridDTO> protocolGridData;
-
-        public SendJejuGridListPacket(int protocolType, int protocolCode, List<JejuGridDTO> protocolGridData) {
-            super(protocolType, protocolCode);
-            this.protocolGridData = protocolGridData;
-        }
-
-        public void setPacket(int protocolType, int protocolCode, List<JejuGridDTO> protocolGridData) {
-            super.setPacket(protocolType, protocolCode);
-            this.protocolGridData = protocolGridData;
-        }
-
-        public List<JejuGridDTO> getProtocolGridData() {
-            return protocolGridData;
-        }
-    }
 }

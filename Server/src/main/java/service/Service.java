@@ -9,7 +9,6 @@ public class Service {
     // DAO 관련 클래스
     SearchTypeDAO searchTypeDAO = new SearchTypeDAO(MybatisConnectionFactory.getSqlSessionFactory());
     SearchAreaDAO searchAreaDAO = new SearchAreaDAO(MybatisConnectionFactory.getSqlSessionFactory());
-    SearchJejuGridDAO searchJejuGridDAO = new SearchJejuGridDAO(MybatisConnectionFactory.getSqlSessionFactory());
     // 데이터 베이스 관련 서비스
     public JProtocol.SendExhibitionPacket e_work_read_all(String address) {
         JProtocol.SendExhibitionPacket sendExhibitionPacket = new JProtocol.SendExhibitionPacket(
@@ -71,11 +70,4 @@ public class Service {
         return sendSpotInformationPacket;
     }
 
-    public JProtocol.SendJejuGridListPacket jeju_grid_work_read_all() {
-        JProtocol.SendJejuGridListPacket sendJejuGridListPacket = new JProtocol.SendJejuGridListPacket(
-                JProtocol.PT_JEJU_GRID,
-                JProtocol.PT_SERVER_RES,
-                searchJejuGridDAO.jeju_grid_select_all_with_annotation());
-        return sendJejuGridListPacket;
-    }
 }
