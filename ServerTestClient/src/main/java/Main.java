@@ -12,10 +12,10 @@ public class Main {
     public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
         InetAddress addr = InetAddress.getLocalHost();
         String localname = addr.getHostName();
-        /*/
-        String ip = "192.168.0.4"; //*/
         //*/
-        String ip = "192.168.235.86"; //*/
+        String ip = "192.168.0.4"; //*/
+        /*/
+        String ip = "192.168.236.31"; //*/
         System.out.println(localname + ip);
         Socket socket = new Socket(ip, 3000); // 아이피 확인은 실행 -> cmd -> ipconfig 후 IPv4를 복사하면 됨
         System.out.println("connect");
@@ -33,60 +33,60 @@ public class Main {
             JProtocol.ClientRecommendedSpotRequestPacket clientRecommendedSpotRequestPacket = new JProtocol.ClientRecommendedSpotRequestPacket();
             switch (menu_result) {
                 case 1:
-                    clientSpotDataRequestPacket.setPacket(JProtocol.PT_EXHIBITION, JProtocol.PT_CLIENT_REQ, "", "");
+                    clientSpotDataRequestPacket.setPacket(JProtocol.PT_EXHIBITION, JProtocol.PT_CLIENT_REQ, "한경면", "");
                     oos.writeObject(clientSpotDataRequestPacket);
                     oos.flush();
                     break;
                 case 2:
-                    clientSpotDataRequestPacket.setPacket(JProtocol.PT_GOOD_RESTAURANT, JProtocol.PT_CLIENT_REQ, "", "");
+                    clientSpotDataRequestPacket.setPacket(JProtocol.PT_GOOD_RESTAURANT, JProtocol.PT_CLIENT_REQ, "한경면", "");
                     oos.writeObject(clientSpotDataRequestPacket);
                     oos.flush();
                     break;
                 case 3:
-                    clientSpotDataRequestPacket.setPacket(JProtocol.PT_HORSERIDING_BACK, JProtocol.PT_CLIENT_REQ, "", "");
+                    clientSpotDataRequestPacket.setPacket(JProtocol.PT_HORSERIDING_BACK, JProtocol.PT_CLIENT_REQ, "한경면", "");
                     oos.writeObject(clientSpotDataRequestPacket);
                     oos.flush();
                     break;
                 case 4:
-                    clientSpotDataRequestPacket.setPacket(JProtocol.PT_NATURE_SIGHT, JProtocol.PT_CLIENT_REQ, "", "");
+                    clientSpotDataRequestPacket.setPacket(JProtocol.PT_NATURE_SIGHT, JProtocol.PT_CLIENT_REQ, "한경면", "");
                     oos.writeObject(clientSpotDataRequestPacket);
                     oos.flush();
                     break;
                 case 5:
-                    clientSpotDataRequestPacket.setPacket(JProtocol.PT_OLLEH_INFORMATION, JProtocol.PT_CLIENT_REQ, "", "");
+                    clientSpotDataRequestPacket.setPacket(JProtocol.PT_OLLEH_INFORMATION, JProtocol.PT_CLIENT_REQ, "한경면", "");
                     oos.writeObject(clientSpotDataRequestPacket);
                     oos.flush();
                     break;
                 case 6:
-                    clientSpotDataRequestPacket.setPacket(JProtocol.PT_SPOT_INFORMATION, JProtocol.PT_CLIENT_REQ, "", "농원");
+                    clientSpotDataRequestPacket.setPacket(JProtocol.PT_SPOT_INFORMATION, JProtocol.PT_CLIENT_REQ, "한경면", "농원");
                     oos.writeObject(clientSpotDataRequestPacket);
                     oos.flush();
                     break;
                 case 7:
-                    clientSpotDataRequestPacket.setPacket(JProtocol.PT_SPOT_INFORMATION, JProtocol.PT_CLIENT_REQ, "", "오름");
+                    clientSpotDataRequestPacket.setPacket(JProtocol.PT_SPOT_INFORMATION, JProtocol.PT_CLIENT_REQ, "한경면", "오름");
                     oos.writeObject(clientSpotDataRequestPacket);
                     oos.flush();
                     break;
                 case 8:
-                    clientSpotDataRequestPacket.setPacket(JProtocol.PT_SPOT_INFORMATION, JProtocol.PT_CLIENT_REQ, "", "무장애 여행지");
+                    clientSpotDataRequestPacket.setPacket(JProtocol.PT_SPOT_INFORMATION, JProtocol.PT_CLIENT_REQ, "한경면", "무장애 여행지");
                     oos.writeObject(clientSpotDataRequestPacket);
                     oos.flush();
                     break;
                 case 9:
-                    clientSpotDataRequestPacket.setPacket(JProtocol.PT_AREA_INFORMATION, JProtocol.PT_CLIENT_REQ, "지역", "");
+                    clientSpotDataRequestPacket.setPacket(JProtocol.PT_AREA_INFORMATION, JProtocol.PT_CLIENT_REQ, "한경면", "");
                     oos.writeObject(clientSpotDataRequestPacket);
                     oos.flush();
                     break;
                 case 10:
                     // 임의로 넣은 값임
                     ArrayList xdata = new ArrayList();
-                    xdata.add(55);
-                    xdata.add(54);
-                    xdata.add(53);
+                    xdata.add(46);
+                    xdata.add(48);
+                    xdata.add(48);
                     ArrayList ydata = new ArrayList();
-                    ydata.add(32);
-                    ydata.add(33);
-                    ydata.add(37);
+                    ydata.add(35);
+                    ydata.add(36);
+                    ydata.add(36);
                     clientRecommendedSpotRequestPacket.setPacket(JProtocol.PT_RECOMMEND_SPOT, JProtocol.PT_CLIENT_REQ, xdata, ydata);
                     oos.writeObject(clientRecommendedSpotRequestPacket);
                     oos.flush();
@@ -112,7 +112,7 @@ public class Main {
                 case JProtocol.PT_EXHIBITION:
                     switch (serverMessagePacket.getProtocolCode()) {
                         case JProtocol.PT_SERVER_RES:
-                            System.out.println("((JProtocol.SendExhibitionPacket) serverMessagePacket).getProtocolData() = " +
+                            System.out.println("((JProtocol.SendExhibitionPacket) serverMessagePacket).getProtocolBasicsData() = " +
                                     ((JProtocol.SendExhibitionPacket) serverMessagePacket).getProtocolBasicsData());
                             System.out.println("((JProtocol.SendExhibitionPacket) serverMessagePacket).getProtocolDetailsData() = " +
                                     ((JProtocol.SendExhibitionPacket) serverMessagePacket).getProtocolDetailsData());

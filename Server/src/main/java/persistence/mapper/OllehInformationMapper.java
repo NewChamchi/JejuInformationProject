@@ -7,10 +7,7 @@ import persistence.DTO.SpotInformationDTO;
 import java.util.List;
 
 public interface OllehInformationMapper {
-    @Select("SELECT * FROM OLLEH_INFORMATION"+
-            "WHERE EXISTS (SELECT SPOT_KEY FROM SPOT_INFORMATION " +
-            "WHERE SPOT_KEY = OLLEH_INFORMATION.SPOT_KEY" +
-            "AND SPOT_ADDRESS LIKE CONCAT ('%', #{address}, '%')) ")
+    @Select("SELECT * FROM OLLEH_INFORMATION WHERE EXISTS (SELECT SPOT_KEY FROM SPOT_INFORMATION WHERE SPOT_KEY = OLLEH_INFORMATION.SPOT_KEY AND SPOT_ADDRESS LIKE CONCAT ('%', #{address}, '%')) ")
     @Results(id="ollehInformationSet", value={
             @Result(property = "spotkey", column = "spot_key"),
             @Result(property = "ollehname", column = "olleh_name"),
@@ -28,10 +25,7 @@ public interface OllehInformationMapper {
     })
     List<SpotInformationDTO> get_all_spot_information();
 
-    @Select("SELECT * FROM SPOT_INFORMATION " +
-            "WHERE EXISTS (SELECT SPOT_KEY FROM OLLEH_INFORMATION " +
-            "WHERE SPOT_KEY = SPOT_INFORMATION.SPOT_KEY" +
-            "AND SPOT_INFORMATION.SPOT_ADDRESS LIKE CONCAT ('%', #{address}, '%')) ")
+    @Select("SELECT * FROM SPOT_INFORMATION WHERE EXISTS (SELECT SPOT_KEY FROM OLLEH_INFORMATION WHERE SPOT_KEY = SPOT_INFORMATION.SPOT_KEY AND SPOT_INFORMATION.SPOT_ADDRESS LIKE CONCAT ('%', #{address}, '%')) ")
     @ResultMap("spotInformationSet")
     List<SpotInformationDTO> get_all_olleh_information_basics(@Param("address")String address);
 }

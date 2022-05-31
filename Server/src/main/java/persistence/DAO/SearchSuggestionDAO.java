@@ -17,7 +17,7 @@ public class SearchSuggestionDAO {
     public List<SpotInformationDTO> s_select_by_area_randomly_with_annotation(String[] address, int data_amount) {
         SqlSession session = sqlSessionFactory.openSession();
         SpotInformationMapper mapper = session.getMapper(SpotInformationMapper.class);
-        return mapper.get_spot_information_random_by_address(address, data_amount);
+        return mapper.get_spot_information_random_by_address(address, 0, data_amount);
     }
 
     public List<JejuGridDTO> j_select_local_by_grid_with_annotation(Integer X, Integer Y) {

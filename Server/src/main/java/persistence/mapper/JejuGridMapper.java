@@ -15,9 +15,8 @@ public interface JejuGridMapper {
     })
     List<JejuGridDTO> get_jeju_grid_all();
 
-    @Select("SELECT JEJU_GRID_LOCAL FROM JEJU_GRID" +
-            "WHERE JEJU_GRID_X = #{jeju_grid_x} AND JEJU_GRID_Y = #{jeju_grid_y}")
+    @Select("SELECT JEJU_GRID_LOCAL FROM JEJU_GRID WHERE JEJU_GRID_X = #{jejugridx} AND JEJU_GRID_Y = #{jejugridy}")
     @ResultMap("jejuGridSet")
-    List<JejuGridDTO> get_local_jeju_grid(@Param("jeju_grid_x")Integer jeju_grid_x, @Param("jeju_grid_y")Integer jeju_grid_y);
+    List<JejuGridDTO> get_local_jeju_grid(@Param("jejugridx")Integer jeju_grid_x, @Param("jejugridy")Integer jeju_grid_y);
 
 }

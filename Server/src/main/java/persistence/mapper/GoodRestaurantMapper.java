@@ -6,7 +6,7 @@ import persistence.DTO.GoodRestaurantDTO;
 import java.util.List;
 
 public interface GoodRestaurantMapper {
-    @Select("SELECT * FROM GOOD_RESTAURANT WHERE GOOD_RESTAURANT_ADDRESS LIKE CONCAT ('%', #{address}, '%'))")
+    @Select("SELECT * FROM GOOD_RESTAURANT WHERE GOOD_RESTAURANT_ADDRESS LIKE CONCAT ('%', #{address}, '%')")
     @Results(id="goodRestaurantSet", value={
             @Result(property = "goodrestaurantkey", column = "good_restaurant_key"),
             @Result(property = "goodrestaurantname", column = "good_restaurant_name"),
