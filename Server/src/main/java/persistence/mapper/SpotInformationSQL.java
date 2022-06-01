@@ -4,18 +4,12 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.jdbc.SQL;
 
 public class SpotInformationSQL {
-    public String s_select_by_address_randomly(@Param("address")String[] address, @Param("i")int i, @Param("needAmount")int needAmount) {
+    public String s_select_by_address_randomly(@Param("address")String address,  @Param("needAmount")int needAmount) {
         SQL sql = new SQL() {{
-            int count = address.length;
+
             SELECT("*");
             FROM("SPOT_INFORMATION");
-            while(count > 0) {
-                count = count - 1;
-                WHERE("SPOT_ADDRESS LIKE CONCAT ('%', '${address[i]}', '%')");
-                if (count > 0) {
-                    OR();
-                }
-            }
+            WHERE("REGEXP_LIKE(SPOT_ADDRESS, #{address})");
             ORDER_BY("RAND()");
             LIMIT("#{needAmount}");
         }};

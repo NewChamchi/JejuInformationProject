@@ -83,7 +83,15 @@ public class Service {
                     searchSuggestionDAO.j_select_local_by_grid_with_annotation(X.get(i), Y.get(i))
                             .get(0).getJejugridlocal();
             String[] jeju_grid_local_split = jeju_grid_local.split("_");
-            spotInformationDTOsList.add(searchSuggestionDAO.s_select_by_area_randomly_with_annotation(jeju_grid_local_split, 5));
+            StringBuilder sb = new StringBuilder();
+            for(String obj : jeju_grid_local_split) {
+                sb.append(obj);
+                sb.append('|');
+            }
+            String jeju_grid_local_append = sb.toString();
+            jeju_grid_local_append = jeju_grid_local_append.replaceAll("[|]$", "");
+            System.out.println("jeju_grid_local_append = " + jeju_grid_local_append);
+            spotInformationDTOsList.add(searchSuggestionDAO.s_select_by_area_randomly_with_annotation(jeju_grid_local_append, 5));
         }
         JProtocol.SendSpotInformationListPacket sendSpotInformationListPacket = new JProtocol.SendSpotInformationListPacket(
                 JProtocol.PT_RECOMMEND_SPOT,

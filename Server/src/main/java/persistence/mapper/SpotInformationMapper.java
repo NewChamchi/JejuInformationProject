@@ -30,6 +30,7 @@ public interface SpotInformationMapper {
 
     @SelectProvider(type = SpotInformationSQL.class, method = "s_select_by_address_randomly")
     @ResultMap("spotInformationSet")
-    List<SpotInformationDTO> get_spot_information_random_by_address(@Param("address")String[] address, @Param("i")int i, @Param("needAmount")int needAmount);
+    List<SpotInformationDTO> get_spot_information_random_by_address(@Param("address")String address, @Param("needAmount")int needAmount);
+
 
 }

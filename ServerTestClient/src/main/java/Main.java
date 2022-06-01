@@ -82,11 +82,11 @@ public class Main {
                     ArrayList xdata = new ArrayList();
                     xdata.add(46);
                     xdata.add(48);
-                    xdata.add(48);
+                    xdata.add(53);
                     ArrayList ydata = new ArrayList();
                     ydata.add(35);
                     ydata.add(36);
-                    ydata.add(36);
+                    ydata.add(38);
                     clientRecommendedSpotRequestPacket.setPacket(JProtocol.PT_RECOMMEND_SPOT, JProtocol.PT_CLIENT_REQ, xdata, ydata);
                     oos.writeObject(clientRecommendedSpotRequestPacket);
                     oos.flush();
