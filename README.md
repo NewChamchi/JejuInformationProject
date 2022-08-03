@@ -1,5 +1,5 @@
 ## JejuInformationProject
-#2022년 1학기 창의프로젝트 제주도 관광지 소개 프로젝트
+# 2022년 1학기 창의프로젝트 제주도 관광지 소개 프로젝트
 
 Server 폴더는 Back-end, ServerTest 폴더는 테스트를 위해 임시로 만든 Front-end 프로젝트임.
 
